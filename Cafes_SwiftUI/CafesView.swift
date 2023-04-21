@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CafesView: View {    
+struct CafesView: View {
     @ObservedObject private var viewModel = CafesViewModel()
     
     var body: some View {
@@ -41,10 +41,12 @@ struct CafesView: View {
                 .listRowSeparator(.hidden)
             }
             .listStyle(.plain)
-            .onAppear(perform: loadData)
+            .task {
+               await viewModel.loadData()
+            }
             .onChange(of: viewModel.searchText) { text in
                 viewModel.isSearching = true
-                debounce(interval: 0.5) {
+                viewModel.debounce(interval: 0.5) {
                     if text.count >= 3 {
                         viewModel.filteredVendors = viewModel.vendors.filter { vendor in
                             vendor.company_name.localizedCaseInsensitiveContains(text)
@@ -55,23 +57,6 @@ struct CafesView: View {
                     viewModel.isSearching = false
                 }
             }
-        }
-    }
-    
-    private func debounce(interval: TimeInterval, action: @escaping () -> Void) {
-        var debouncer = Debouncer(delay: interval)
-        debouncer.run(action: action)
-    }
-    
-    private func loadData() {
-        let data = Data(MockData.jsonString.utf8)
-        
-        do {
-            let decodedData = try JSONDecoder().decode([String:[Vendor]].self, from: data)
-            viewModel.vendors = decodedData["vendors"] ?? []
-            viewModel.filteredVendors = viewModel.vendors
-        } catch {
-            print("Error decoding JSON: \(error)")
         }
     }
 }

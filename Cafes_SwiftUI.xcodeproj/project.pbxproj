@@ -8,17 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		F92D355029F2981A00728DDE /* Cafes_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92D354F29F2981A00728DDE /* Cafes_SwiftUIApp.swift */; };
-		F92D355229F2981A00728DDE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92D355129F2981A00728DDE /* ContentView.swift */; };
+		F92D355229F2981A00728DDE /* CafesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92D355129F2981A00728DDE /* CafesListView.swift */; };
 		F92D355429F2981C00728DDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F92D355329F2981C00728DDE /* Assets.xcassets */; };
 		F92D355729F2981C00728DDE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F92D355629F2981C00728DDE /* Preview Assets.xcassets */; };
+		F92D355E29F299A500728DDE /* CafesAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92D355D29F299A500728DDE /* CafesAPIModel.swift */; };
+		F92D356029F29A1900728DDE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92D355F29F29A1900728DDE /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F92D354C29F2981A00728DDE /* Cafes_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cafes_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F92D354F29F2981A00728DDE /* Cafes_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cafes_SwiftUIApp.swift; sourceTree = "<group>"; };
-		F92D355129F2981A00728DDE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F92D355129F2981A00728DDE /* CafesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafesListView.swift; sourceTree = "<group>"; };
 		F92D355329F2981C00728DDE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F92D355629F2981C00728DDE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F92D355D29F299A500728DDE /* CafesAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafesAPIModel.swift; sourceTree = "<group>"; };
+		F92D355F29F29A1900728DDE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +56,9 @@
 			isa = PBXGroup;
 			children = (
 				F92D354F29F2981A00728DDE /* Cafes_SwiftUIApp.swift */,
-				F92D355129F2981A00728DDE /* ContentView.swift */,
+				F92D355129F2981A00728DDE /* CafesListView.swift */,
+				F92D355D29F299A500728DDE /* CafesAPIModel.swift */,
+				F92D355F29F29A1900728DDE /* Constants.swift */,
 				F92D355329F2981C00728DDE /* Assets.xcassets */,
 				F92D355529F2981C00728DDE /* Preview Content */,
 			);
@@ -137,8 +143,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F92D355229F2981A00728DDE /* ContentView.swift in Sources */,
+				F92D355229F2981A00728DDE /* CafesListView.swift in Sources */,
 				F92D355029F2981A00728DDE /* Cafes_SwiftUIApp.swift in Sources */,
+				F92D355E29F299A500728DDE /* CafesAPIModel.swift in Sources */,
+				F92D356029F29A1900728DDE /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

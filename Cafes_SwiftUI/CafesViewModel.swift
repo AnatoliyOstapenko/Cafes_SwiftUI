@@ -11,7 +11,6 @@ class CafesViewModel: ObservableObject {
     @Published var searchText = ""
     @Published var vendors: [Vendor] = []
     @Published var filteredVendors: [Vendor] = []
-    @Published var isSearching = false
     @Published var isLoading = false
     
     func debounce(interval: TimeInterval, action: @escaping () -> Void) {
@@ -31,6 +30,18 @@ class CafesViewModel: ObservableObject {
         } catch {
             print("Error decoding JSON: \(error)")
             isLoading = false
+        }
+    }
+    
+    func filterVendors() {
+        debounce(interval: 0.5) {
+            if self.searchText.count >= 3 {
+                self.filteredVendors = self.vendors.filter { vendor in
+                    vendor.company_name.localizedCaseInsensitiveContains(self.searchText)
+                }
+            } else {
+                self.filteredVendors = self.vendors
+            }
         }
     }
 }

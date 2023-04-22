@@ -44,18 +44,8 @@ struct CafesView: View {
             .task {
                await viewModel.loadData()
             }
-            .onChange(of: viewModel.searchText) { text in
-                viewModel.isSearching = true
-                viewModel.debounce(interval: 0.5) {
-                    if text.count >= 3 {
-                        viewModel.filteredVendors = viewModel.vendors.filter { vendor in
-                            vendor.company_name.localizedCaseInsensitiveContains(text)
-                        }
-                    } else {
-                        viewModel.filteredVendors = viewModel.vendors
-                    }
-                    viewModel.isSearching = false
-                }
+            .onChange(of: viewModel.searchText) { _ in
+                viewModel.filterVendors()
             }
         }
     }

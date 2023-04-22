@@ -7,17 +7,25 @@
 
 import SwiftUI
 
-struct CafesCell: View {
-    
-    let filteredVendors: Vendor
+struct CafesCell: View {    
+    let vendor: Vendor
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            CafesImage(imageURL: vendor.imageUrl)
+            VStack(alignment: .leading) {
+                Text(vendor.company_name)
+                    .font(.headline)
+                Text(vendor.shop_type)
+                    .font(.subheadline)
+            }
+        }
+        .listRowSeparator(.hidden)
     }
 }
 
 struct CafesCell_Previews: PreviewProvider {
     static var previews: some View {
-        CafesCell(filteredVendors: MockData.mockVendor)
+        CafesCell(vendor: MockData.mockVendor)
     }
 }

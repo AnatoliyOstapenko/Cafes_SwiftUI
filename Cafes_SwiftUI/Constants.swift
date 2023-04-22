@@ -8,7 +8,8 @@
 import Foundation
 
 enum Constants {
-    
+    static let emptyMainStatement = "Sorry! No results found..."
+    static let emptySubStatement = "Please try a different search request or browse businesses from the list"
 }
 
 enum MockData {
@@ -21,7 +22,7 @@ enum MockData {
                                   follow: false,
                                   business_type: "physical",
                                   cover_photo: CoverPhoto(id: 002,
-                                                          media_url: "https://www.apple.com/v/environment/s/images/overview/hero_iphone14__g2b1mq96iumq_large_2x.png",
+                                                          media_url: "https://cdn-staging.chatsumer.app/eyJidWNrZXQiOiJjaGF0c3VtZXItZ2VuZXJhbC1zdGFnaW5nLXN0b3JhZ2UiLCJrZXkiOiIxMy84ZjMzZTgyNy0yNzIxLTQ3ZjctYjViNS0zM2Q5Y2E2MTM1OGQuanBlZyJ9",
                                                           media_type: "image"),
                                   categories: [Category(id: 002,
                                                         name: "Butchery",

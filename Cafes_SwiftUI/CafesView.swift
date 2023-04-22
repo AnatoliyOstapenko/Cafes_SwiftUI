@@ -14,31 +14,7 @@ struct CafesView: View {
         VStack {
             SearchBar(text: $viewModel.searchText)
             List(viewModel.filteredVendors) { vendor in
-                VStack {
-                    AsyncImage(url: vendor.imageUrl) { image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 360,
-                                   height: 190)
-                            .cornerRadius(8)
-                            .shadow(color: Color(.systemGray3), radius: 4, x: 0, y: 5)
-                    } placeholder: {
-                        Image("noImage")
-                            .resizable()
-                            .imageScale(.small)
-                            .frame(width: 390,
-                                   height: 210)
-                            .cornerRadius(8)
-                    }
-                    VStack(alignment: .leading) {
-                        Text(vendor.company_name)
-                            .font(.headline)
-                        Text(vendor.shop_type)
-                            .font(.subheadline)
-                    }
-                }
-                .listRowSeparator(.hidden)
+                CafesCell(vendor: vendor)
             }
             .listStyle(.plain)
             .task {
@@ -46,6 +22,11 @@ struct CafesView: View {
             }
             .onChange(of: viewModel.searchText) { _ in
                 viewModel.filterVendors()
+            }
+            if viewModel.filteredVendors.isEmpty {
+                GeometryReader { geometry in
+                    EmptyStateView(offset: geometry.size.height / 2)
+                }
             }
         }
     }

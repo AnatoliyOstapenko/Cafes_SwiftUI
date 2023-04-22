@@ -24,7 +24,8 @@ class CafesViewModel: ObservableObject {
             let decodedData = try JSONDecoder().decode([String:[Vendor]].self, from: data)
             DispatchQueue.main.async {
                 self.vendors = decodedData["vendors"] ?? []
-                self.filteredVendors = self.vendors
+                // items are filtered by the company_name field:
+                self.filteredVendors = self.vendors.sorted {$0.company_name < $1.company_name}
                 self.isLoading = false
             }
         } catch {
@@ -32,13 +33,11 @@ class CafesViewModel: ObservableObject {
             isLoading = false
         }
     }
-    
+    // The search starts automatically after a user has typed at least 3 symbols, with a 0.5-second debouncing period:
     func filterVendors() {
         debounce(interval: 0.5) {
             if self.searchText.count >= 3 {
-                self.filteredVendors = self.vendors.filter { vendor in
-                    vendor.company_name.localizedCaseInsensitiveContains(self.searchText)
-                }
+                self.filteredVendors = self.vendors.filter { $0.company_name.localizedCaseInsensitiveContains(self.searchText)}
             } else {
                 self.filteredVendors = self.vendors
             }

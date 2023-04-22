@@ -12,7 +12,7 @@ struct CafesView: View {
     
     var body: some View {
         VStack {
-            SearchBar(text: $viewModel.searchText, isEditing: $viewModel.isSearching)
+            SearchBar(text: $viewModel.searchText)
             List(viewModel.filteredVendors) { vendor in
                 VStack {
                     AsyncImage(url: vendor.imageUrl) { image in
@@ -20,7 +20,7 @@ struct CafesView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 360,
-                                   height: 200)
+                                   height: 190)
                             .cornerRadius(8)
                             .shadow(color: Color(.systemGray3), radius: 4, x: 0, y: 5)
                     } placeholder: {

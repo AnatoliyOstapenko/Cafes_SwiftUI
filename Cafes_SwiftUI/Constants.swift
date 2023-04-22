@@ -12,7 +12,28 @@ enum Constants {
 }
 
 enum MockData {
-    /// Mocked network layer:
+    // Mocked model
+    static let mockVendor = Vendor(id: 001,
+                                  company_name: "North St. Butchery",
+                                  area_served: "City of London",
+                                  shop_type: "Cafe & Restaurant",
+                                  favorited: false,
+                                  follow: false,
+                                  business_type: "physical",
+                                  cover_photo: CoverPhoto(id: 002,
+                                                          media_url: "https://www.apple.com/v/environment/s/images/overview/hero_iphone14__g2b1mq96iumq_large_2x.png",
+                                                          media_type: "image"),
+                                  categories: [Category(id: 002,
+                                                        name: "Butchery",
+                                                        image: Category.ImageData(id: 003,
+                                                                                  media_url: "www",
+                                                                                  media_type: "image"))],
+                                  tags: [Tag(id: 004,
+                                             name: "Butchery",
+                                             purpose: "Cafe")])
+    
+    
+    // Mocked network layer:
     static let jsonString = """
         {
           "vendors": [

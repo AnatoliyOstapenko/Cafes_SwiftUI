@@ -17,15 +17,17 @@ class CafesViewModel: ObservableObject {
     func debounce(interval: TimeInterval, action: @escaping () -> Void) {
         var debouncer = Debouncer(delay: interval)
         debouncer.run(action: action)
-    }    
+    }
     
     func loadData() async {
         let data = Data(MockData.jsonString.utf8)
         do {
             let decodedData = try JSONDecoder().decode([String:[Vendor]].self, from: data)
-            vendors = decodedData["vendors"] ?? []
-            filteredVendors = vendors
-            isLoading = false
+            DispatchQueue.main.async {
+                self.vendors = decodedData["vendors"] ?? []
+                self.filteredVendors = self.vendors
+                self.isLoading = false
+            }
         } catch {
             print("Error decoding JSON: \(error)")
             isLoading = false

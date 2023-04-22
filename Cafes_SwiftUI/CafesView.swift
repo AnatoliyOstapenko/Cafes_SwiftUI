@@ -28,6 +28,10 @@ struct CafesView: View {
                     EmptyStateView(offset: geometry.size.height / 2)
                 }
             }
+            if viewModel.isLoading {
+                ProgressView()
+                    .scaleEffect(2)
+            }
         }
     }
 }

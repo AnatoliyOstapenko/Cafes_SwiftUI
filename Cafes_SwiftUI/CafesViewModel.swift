@@ -24,8 +24,10 @@ class CafesViewModel: ObservableObject {
             let decodedData = try JSONDecoder().decode([String:[Vendor]].self, from: data)
             DispatchQueue.main.async {
                 self.vendors = decodedData["vendors"] ?? []
+                
                 // items are filtered by the company_name field:
                 self.filteredVendors = self.vendors.sorted {$0.company_name < $1.company_name}
+                self.vendors.sort {$0.company_name < $1.company_name}
                 self.isLoading = false
             }
         } catch {

@@ -15,16 +15,14 @@ struct CafesImage: View {
             image
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(width: 360,
-                       height: 190)
+                .frame(height: 190)
+                .clipped()
                 .cornerRadius(8)
                 .shadow(color: Color(.systemGray3), radius: 4, x: 0, y: 5)
         } placeholder: {
             Image("noImage")
                 .resizable()
                 .imageScale(.small)
-                .frame(width: 390,
-                       height: 210)
                 .cornerRadius(8)
         }
     }

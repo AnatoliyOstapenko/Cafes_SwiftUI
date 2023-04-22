@@ -18,7 +18,7 @@ struct CafesView: View {
             }
             .listStyle(.plain)
             .task {
-               await viewModel.loadData()
+                await viewModel.loadData()
             }
             .onChange(of: viewModel.searchText) { _ in
                 viewModel.filterVendors()

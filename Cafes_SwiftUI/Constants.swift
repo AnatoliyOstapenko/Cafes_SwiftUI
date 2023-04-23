@@ -14,7 +14,7 @@ enum Constants {
 
 enum MockData {
     // Mocked model
-    static let mockVendor = Vendor(id: 001,
+    static var mockVendor = Vendor(id: 001,
                                   company_name: "North St. Butchery",
                                   area_served: "City of London",
                                   shop_type: "Cafe & Restaurant",

@@ -10,6 +10,7 @@
 		F90999FA29F4469F006F2BE2 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90999F929F4469E006F2BE2 /* EmptyStateView.swift */; };
 		F90999FC29F44AFB006F2BE2 /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90999FB29F44AFB006F2BE2 /* Color+Ext.swift */; };
 		F90999FE29F453B7006F2BE2 /* CafesImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90999FD29F453B7006F2BE2 /* CafesImage.swift */; };
+		F9099A0029F541CA006F2BE2 /* BookmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90999FF29F541CA006F2BE2 /* BookmarkButton.swift */; };
 		F92D355029F2981A00728DDE /* Cafes_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92D354F29F2981A00728DDE /* Cafes_SwiftUIApp.swift */; };
 		F92D355229F2981A00728DDE /* CafesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92D355129F2981A00728DDE /* CafesView.swift */; };
 		F92D355429F2981C00728DDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F92D355329F2981C00728DDE /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 		F90999F929F4469E006F2BE2 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		F90999FB29F44AFB006F2BE2 /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		F90999FD29F453B7006F2BE2 /* CafesImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafesImage.swift; sourceTree = "<group>"; };
+		F90999FF29F541CA006F2BE2 /* BookmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkButton.swift; sourceTree = "<group>"; };
 		F92D354C29F2981A00728DDE /* Cafes_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cafes_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F92D354F29F2981A00728DDE /* Cafes_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cafes_SwiftUIApp.swift; sourceTree = "<group>"; };
 		F92D355129F2981A00728DDE /* CafesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafesView.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				F90999F929F4469E006F2BE2 /* EmptyStateView.swift */,
 				F92D356729F2CBC000728DDE /* CafesViewModel.swift */,
 				F92D356B29F2EE5500728DDE /* CafesCell.swift */,
+				F90999FF29F541CA006F2BE2 /* BookmarkButton.swift */,
 				F90999FD29F453B7006F2BE2 /* CafesImage.swift */,
 				F92D356929F2DCD500728DDE /* Debouncer.swift */,
 				F92D356329F29DD600728DDE /* SearchBar.swift */,
@@ -169,6 +172,7 @@
 				F92D355229F2981A00728DDE /* CafesView.swift in Sources */,
 				F92D356A29F2DCD500728DDE /* Debouncer.swift in Sources */,
 				F92D355029F2981A00728DDE /* Cafes_SwiftUIApp.swift in Sources */,
+				F9099A0029F541CA006F2BE2 /* BookmarkButton.swift in Sources */,
 				F92D356C29F2EE5500728DDE /* CafesCell.swift in Sources */,
 				F92D355E29F299A500728DDE /* CafesAPIModel.swift in Sources */,
 				F92D356029F29A1900728DDE /* Constants.swift in Sources */,

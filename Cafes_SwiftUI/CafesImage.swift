@@ -15,7 +15,7 @@ struct CafesImage: View {
             image
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(height: 190)
+                .frame(height: 200)
                 .clipped()
                 .cornerRadius(8)
                 .shadow(color: Color(.systemGray3), radius: 4, x: 0, y: 5)

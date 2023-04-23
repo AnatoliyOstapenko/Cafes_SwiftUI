@@ -12,6 +12,7 @@ class CafesViewModel: ObservableObject {
     @Published var vendors: [Vendor] = []
     @Published var filteredVendors: [Vendor] = []
     @Published var isLoading = false
+    @Published var isBookmarked = false
     
     func debounce(interval: TimeInterval, action: @escaping () -> Void) {
         var debouncer = Debouncer(delay: interval)
@@ -32,7 +33,9 @@ class CafesViewModel: ObservableObject {
             }
         } catch {
             print("Error decoding JSON: \(error)")
-            isLoading = false
+            DispatchQueue.main.async {
+                self.isLoading = false
+            }
         }
     }
     // The search starts automatically after a user has typed at least 3 symbols, with a 0.5-second debouncing period:

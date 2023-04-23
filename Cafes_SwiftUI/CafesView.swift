@@ -14,7 +14,7 @@ struct CafesView: View {
         VStack {
             SearchBar(text: $viewModel.searchText)
             List(viewModel.filteredVendors) { vendor in
-                CafesCell(vendor: vendor)
+                CafesCell(vendor: vendor, isBookmarked: $viewModel.isBookmarked)
             }
             .listStyle(.plain)
             .task {

@@ -30,6 +30,6 @@ struct CafesImage: View {
 
 struct CafesImage_Previews: PreviewProvider {
     static var previews: some View {
-        CafesImage(imageURL: MockData.mockVendor.imageUrl)
+        CafesImage(imageURL: MockData.mockVendor.coverPhoto.mediaURL)
     }
 }

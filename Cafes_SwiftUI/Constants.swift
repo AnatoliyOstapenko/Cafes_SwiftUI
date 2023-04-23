@@ -14,25 +14,24 @@ enum Constants {
 
 enum MockData {
     // Mocked model
-    static var mockVendor = Vendor(id: 001,
-                                  company_name: "North St. Butchery",
-                                  area_served: "City of London",
-                                  shop_type: "Cafe & Restaurant",
-                                  favorited: false,
-                                  follow: false,
-                                  business_type: "physical",
-                                  cover_photo: CoverPhoto(id: 002,
-                                                          media_url: "https://cdn-staging.chatsumer.app/eyJidWNrZXQiOiJjaGF0c3VtZXItZ2VuZXJhbC1zdGFnaW5nLXN0b3JhZ2UiLCJrZXkiOiIxMy84ZjMzZTgyNy0yNzIxLTQ3ZjctYjViNS0zM2Q5Y2E2MTM1OGQuanBlZyJ9",
-                                                          media_type: "image"),
-                                  categories: [Category(id: 002,
-                                                        name: "Butchery",
-                                                        image: Category.ImageData(id: 003,
-                                                                                  media_url: "www",
-                                                                                  media_type: "image"))],
-                                  tags: [Tag(id: 004,
-                                             name: "Butchery",
-                                             purpose: "Cafe")])
-    
+    static var mockVendor = Vendor(id: 99,
+                                   companyName: "Florists + Fashion",
+                                   areaServed: "Newry",
+                                   shopType: "Bike Shop",
+                                   favorited: false,
+                                   follow: false,
+                                   businessType: "virtual",
+                                   coverPhoto: CoverPhoto(id: 984,
+                                                          mediaURL: URL(string: "https://i.imgur.com/CzXTtJV.jpg")!,
+                                                          mediaType: "image"),
+                                   categories: [Category(id: 40,
+                                                         name: "Florists",
+                                                         image: CategoryImage(id: 1348,
+                                                                      mediaURL: URL(string: "https://media-staging.chatsumer.app/48/1830f855-6315-4d3c-a5dc-088ea826aef2.svg")!,
+                                                                      mediaType: "image"))],
+                                   tags: [Tag(id: 99,
+                                              name: "BMX",
+                                              purpose: "shop")])
     
     // Mocked network layer:
     static let jsonString = """

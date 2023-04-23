@@ -9,28 +9,45 @@ import SwiftUI
 
 struct CafesCell: View {    
     
-    let vendor: Vendor
-    @Binding var isBookmarked: Bool
+    @Binding var vendor: Vendor
     
     var body: some View {
-        VStack {
-            CafesImage(imageURL: vendor.imageUrl)
+        VStack(alignment: .leading, spacing: 8) {
+            CafesImage(imageURL: vendor.coverPhoto.mediaURL)
                 .overlay(alignment: .bottomLeading) {
-                    Text("City of london")
+                    Text(vendor.areaServed)
                         .padding(6)
                         .background(Color(.systemBackground))
                         .cornerRadius(16)
                         .padding(8)
                 }
                 .overlay(alignment: .topTrailing) {
-                    BookmarkButton(isBookmarked: $isBookmarked)
+                    Toggle(isOn: $vendor.favorited) {
+                        
+                    }
+//                    BookmarkButton(isBookmarked: $isBookmarked)
                 }
-            VStack(alignment: .leading) {
-                Text(vendor.company_name)
-                    .font(.headline)
-                Text(vendor.shop_type)
-                    .font(.subheadline)
+            
+            Text(vendor.companyName)
+                .font(.headline)
+            HStack {
+                ForEach(vendor.categories) { category in
+                    AsyncImage(url: category.image.mediaURL) { image in
+                        image
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                    } placeholder: {
+                        Image(systemName: "globe")
+                    }
+
+                    Text(category.name)
+                        .font(.subheadline)
+                        .lineLimit(1)
+                }
+                
             }
+            
+            
         }
         .listRowSeparator(.hidden)
     }
@@ -38,6 +55,6 @@ struct CafesCell: View {
 
 struct CafesCell_Previews: PreviewProvider {
     static var previews: some View {
-        CafesCell(vendor: MockData.mockVendor, isBookmarked: .constant(false))
+        CafesCell(vendor: .constant(MockData.mockVendor))
     }
 }

@@ -23,9 +23,9 @@ struct CafesCell: View {
                 }
                 .overlay(alignment: .topTrailing) {
                     Toggle(isOn: $vendor.favorited) {
-                        
+                        BookmarkView(isFavorited: $vendor.favorited)
                     }
-//                    BookmarkButton(isBookmarked: $isBookmarked)
+                    .toggleStyle(.button)
                 }
             
             Text(vendor.companyName)
@@ -39,15 +39,12 @@ struct CafesCell: View {
                     } placeholder: {
                         Image(systemName: "globe")
                     }
-
+                    
                     Text(category.name)
                         .font(.subheadline)
                         .lineLimit(1)
                 }
-                
             }
-            
-            
         }
         .listRowSeparator(.hidden)
     }

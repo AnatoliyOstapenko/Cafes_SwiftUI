@@ -10,6 +10,10 @@ import SwiftUI
 struct CafesCell: View {    
     
     @Binding var vendor: Vendor
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
+    private var numberOfTagsPerRow: Int {
+        return verticalSizeClass == .regular ? 2 : 4
+    }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -26,23 +30,24 @@ struct CafesCell: View {
                         BookmarkView(isFavorited: $vendor.favorited)
                     }
                     .toggleStyle(.button)
+                    .buttonStyle(.plain)
                 }
             
             Text(vendor.companyName)
-                .font(.headline)
-            HStack {
-                ForEach(vendor.categories) { category in
-                    AsyncImage(url: category.image.mediaURL) { image in
-                        image
-                            .resizable()
-                            .frame(width: 40, height: 40)
-                    } placeholder: {
-                        Image(systemName: "globe")
+                .font(.title2)
+                .fontWeight(.medium)
+            
+            
+            ForEach(0..<vendor.categories.count/numberOfTagsPerRow, id: \.self) { rowIndex in
+                HStack(spacing: 10) {
+                    ForEach(vendor.categories.dropFirst(rowIndex * numberOfTagsPerRow).prefix(numberOfTagsPerRow)) { category in
+                        HStack {
+                            Image(systemName: "globe")
+                            Text(category.name)
+                                .font(.system(size: 18, weight: .medium))
+                                .lineLimit(1)
+                        }
                     }
-                    
-                    Text(category.name)
-                        .font(.subheadline)
-                        .lineLimit(1)
                 }
             }
         }

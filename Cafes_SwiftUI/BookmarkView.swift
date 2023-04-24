@@ -1,5 +1,5 @@
 //
-//  BookmarkButton.swift
+//  BookmarkView.swift
 //  Cafes_SwiftUI
 //
 //  Created by Anatoliy Ostapenko on 23.04.2023.
@@ -28,7 +28,7 @@ struct BookmarkView: View {
     }
 }
 
-struct BookmarkButton_Previews: PreviewProvider {
+struct BookmarkView_Preview: PreviewProvider {
     static var previews: some View {
         BookmarkView(isFavorited: .constant(false))
     }

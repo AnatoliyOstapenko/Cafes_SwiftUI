@@ -38,7 +38,7 @@ struct CafesCell: View {
                 .fontWeight(.medium)
             
             
-            ForEach(0..<vendor.categories.count/numberOfTagsPerRow, id: \.self) { rowIndex in
+            ForEach(0..<vendor.categories.count/numberOfTagsPerRow + 1, id: \.self) { rowIndex in
                 HStack(spacing: 10) {
                     ForEach(vendor.categories.dropFirst(rowIndex * numberOfTagsPerRow).prefix(numberOfTagsPerRow)) { category in
                         HStack {
@@ -46,6 +46,18 @@ struct CafesCell: View {
                             Text(category.name)
                                 .font(.system(size: 18, weight: .medium))
                                 .lineLimit(1)
+                        }
+                    }
+                }           }
+            
+            ForEach(0..<vendor.tags.count/numberOfTagsPerRow + 1, id: \.self) { rowIndex in
+                HStack(spacing: 10) {
+                    ForEach(vendor.tags.dropFirst(rowIndex * numberOfTagsPerRow).prefix(numberOfTagsPerRow)) { category in
+                        HStack {
+                            Text("• \(category.name)")
+                                .font(.system(size: 18, weight: .medium))
+                                .lineLimit(1)
+                                .foregroundColor(.secondary)
                         }
                     }
                 }

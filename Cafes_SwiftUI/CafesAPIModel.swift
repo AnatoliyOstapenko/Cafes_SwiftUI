@@ -61,7 +61,7 @@ struct CategoryImage: Codable {
     }
 }
 
-struct Tag: Codable {
+struct Tag: Codable, Identifiable {
     let id: Int
     let name: String
     let purpose: String

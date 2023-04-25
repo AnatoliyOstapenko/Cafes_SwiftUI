@@ -65,4 +65,7 @@ struct Tag: Codable, Identifiable {
     let id: Int
     let name: String
     let purpose: String
+    var size: CGFloat = 0
 }
+
+extension Tag: Equatable, Hashable {}

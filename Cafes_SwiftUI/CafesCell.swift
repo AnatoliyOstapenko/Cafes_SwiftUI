@@ -48,20 +48,9 @@ struct CafesCell: View {
                                 .lineLimit(1)
                         }
                     }
-                }           }
-            
-            ForEach(0..<vendor.tags.count/numberOfTagsPerRow + 1, id: \.self) { rowIndex in
-                HStack(spacing: 10) {
-                    ForEach(vendor.tags.dropFirst(rowIndex * numberOfTagsPerRow).prefix(numberOfTagsPerRow)) { category in
-                        HStack {
-                            Text("• \(category.name)")
-                                .font(.system(size: 18, weight: .medium))
-                                .lineLimit(1)
-                                .foregroundColor(.secondary)
-                        }
-                    }
                 }
             }
+            TagView(maxLimit: 200, tags: vendor.tags)
         }
         .listRowSeparator(.hidden)
     }

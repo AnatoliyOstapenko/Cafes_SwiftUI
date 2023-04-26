@@ -19,7 +19,7 @@ struct Vendor: Codable, Identifiable {
     let coverPhoto: CoverPhoto
     let categories: [Category]
     let tags: [Tag]
-
+    
     enum CodingKeys: String, CodingKey {
         case id, favorited, follow, categories, tags
         case companyName = "company_name"
@@ -42,14 +42,17 @@ struct CoverPhoto: Codable {
     }
 }
 
-struct Category: Codable, Identifiable {
+struct Category: Codable, Identifiable, Hashable, Taggable {
+    static func == (lhs: Category, rhs: Category) -> Bool {
+        lhs.name == rhs.name
+    }
+    
     let id: Int
     let name: String
     let image: CategoryImage
-
 }
 
-struct CategoryImage: Codable {
+struct CategoryImage: Codable, Hashable {
     let id: Int
     let mediaURL: URL
     let mediaType: String
@@ -61,11 +64,8 @@ struct CategoryImage: Codable {
     }
 }
 
-struct Tag: Codable, Identifiable {
+struct Tag: Codable, Identifiable, Hashable, Taggable {
     let id: Int
     let name: String
     let purpose: String
-    var size: CGFloat = 0
 }
-
-extension Tag: Equatable, Hashable {}

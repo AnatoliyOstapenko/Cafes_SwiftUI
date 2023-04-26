@@ -7,90 +7,64 @@
 
 import SwiftUI
 
-struct TagView: View {
-    var maxLimit: Int
-    @State var tags: [Tag]
+protocol Taggable: Codable, Hashable, Identifiable {
+    var name: String { get }
+}
+
+struct TagView<T: Taggable>: View {
     
-    var fontSize: CGFloat = 16
+    let tags: [T]
+    var groupedItems: [[T]] = []
+    let screenWidth = UIScreen.main.bounds.width
+    
+    init(tags: [T]) {
+        self.tags = tags
+        self.groupedItems = createGropedItems(tags)
+    }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 15) {
-            Text("Add some tags...")
-            ScrollView {
-                VStack(alignment: .leading, spacing: 10) {
-                    ForEach(getRows(), id: \.self) { rows in
-                        HStack {
-                            ForEach(rows) { row in
-                                RowView(tag: row)
-                            }
-                        }
+        VStack(alignment: .leading, spacing: 5) {
+            ForEach(groupedItems, id: \.self) { subItems in
+                HStack {
+                    ForEach(subItems, id: \.self) { tag in
+                        Text("• \(tag.name)")
+                            .font(.system(size: 18, weight: .medium))
+                            .lineLimit(1)
+                            .foregroundColor(.secondary)
+                        
                     }
                 }
-                .frame(width: UIScreen.main.bounds.width - 80, alignment: .leading)
-                .padding(.vertical)
-                .environment(\.colorScheme, .dark)
             }
-            .frame(maxWidth: .infinity)
-            .background {
-                RoundedRectangle(cornerRadius: 10)
-                    .strokeBorder(Color(.white), lineWidth: 2)
-            }
-        }
-        .onChange(of: tags) { newValue in
-            guard let last = tags.last else { return }
-            
-            // Getting text size:
-            let font = UIFont.systemFont(ofSize: fontSize)
-            let attributes = [NSAttributedString.Key.font: font]
-            let size = (last.name as NSString).size(withAttributes: attributes)
-            print(size)
-            
-            // Updating size:
-            tags[getIndex(tag: last)].size = size.width
         }
     }
     
-    @ViewBuilder
-    func RowView(tag: Tag) -> some View {
-        Text(tag.name)
-            .font(.system(size: fontSize))
-            .padding(8)
-            .padding(.horizontal, 14)
-            .background(.cyan)
-            .cornerRadius(14)
-            .lineLimit(1)
+    private func createGropedItems(_ items: [T]) -> [[T]] {
+        var groupedItems: [[T]] = []
+        var temporaryItems: [T] = []
+        var width: CGFloat = 0
         
-    }
-    
-    func getIndex(tag: Tag) -> Int {
-        let index = tags.firstIndex {tag.id == $0.id} ?? 0
-        return index
-    }
-    
-    func getRows() -> [[Tag]] {
-        var rows: [[Tag]] = []
-        var currentRow: [Tag] = []
-        var totalWidth: CGFloat = 0
-        let screenWidth: CGFloat = UIScreen.main.bounds.width - 90
-        // calculating width
-        tags.forEach { tag in
-            totalWidth += tag.size + 32
-            if totalWidth > screenWidth {
-                totalWidth = !currentRow.isEmpty || rows.isEmpty ? (tag.size + 40) : 0
-                rows.append(currentRow)
-                currentRow.removeAll()
-                currentRow.append(tag)
+        for tag in items {
+            let label = UILabel()
+            label.text = "• \(tag.name)"
+            label.sizeToFit()
+            
+            let labelWidth = label.frame.size.width + 38
+            
+            if (width + labelWidth + 38) < screenWidth {
+                width += labelWidth
+                temporaryItems.append(tag)
             } else {
-                currentRow.append(tag)
+                width = labelWidth
+                groupedItems.append(temporaryItems)
+                temporaryItems.removeAll()
+                temporaryItems.append(tag)
             }
         }
-        if !currentRow.isEmpty {
-            rows.append(currentRow)
-            currentRow.removeAll()
-        }
-        return rows
+        groupedItems.append(temporaryItems)
+        return groupedItems
     }
 }
+
 
 struct TagView_Previews: PreviewProvider {
     static var previews: some View {

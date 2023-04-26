@@ -50,7 +50,8 @@ struct CafesCell: View {
                     }
                 }
             }
-            TagView(maxLimit: 200, tags: vendor.tags)
+            TagView(tags: vendor.tags)
+         
         }
         .listRowSeparator(.hidden)
     }

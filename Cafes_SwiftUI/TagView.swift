@@ -14,11 +14,13 @@ protocol Taggable: Codable, Hashable, Identifiable {
 struct TagView<T: Taggable>: View {
     
     let tags: [T]
-    var groupedItems: [[T]] = []
-    let screenWidth = UIScreen.main.bounds.width
+    private var groupedItems: [[T]] = []
+    private let screenWidth = UIScreen.main.bounds.width
+    let symbol: TagSymbol
     
-    init(tags: [T]) {
+    init(tags: [T], symbol: TagSymbol) {
         self.tags = tags
+        self.symbol = symbol
         self.groupedItems = createGropedItems(tags)
     }
     
@@ -27,11 +29,19 @@ struct TagView<T: Taggable>: View {
             ForEach(groupedItems, id: \.self) { subItems in
                 HStack {
                     ForEach(subItems, id: \.self) { tag in
-                        Text("• \(tag.name)")
-                            .font(.system(size: 18, weight: .medium))
-                            .lineLimit(1)
-                            .foregroundColor(.secondary)
-                        
+                        if symbol == .dot {
+                            Text("• \(tag.name)")
+                                .font(.system(size: 18, weight: .medium))
+                                .lineLimit(1)
+                                .foregroundColor(.secondary)
+                        } else {
+                            HStack {
+                                Image(systemName: "globe")
+                                Text(tag.name)
+                                    .font(.system(size: 18, weight: .medium))
+                                    .lineLimit(1)
+                            }
+                        }
                     }
                 }
             }

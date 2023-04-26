@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+enum TagSymbol { case dot, svg }
+
 struct CafesCell: View {    
     
     @Binding var vendor: Vendor
@@ -19,11 +21,7 @@ struct CafesCell: View {
         VStack(alignment: .leading, spacing: 8) {
             CafesImage(imageURL: vendor.coverPhoto.mediaURL)
                 .overlay(alignment: .bottomLeading) {
-                    Text(vendor.areaServed)
-                        .padding(6)
-                        .background(Color(.systemBackground))
-                        .cornerRadius(16)
-                        .padding(8)
+                    AreaLabelView(area: vendor.areaServed)
                 }
                 .overlay(alignment: .topTrailing) {
                     Toggle(isOn: $vendor.favorited) {
@@ -32,26 +30,11 @@ struct CafesCell: View {
                     .toggleStyle(.button)
                     .buttonStyle(.plain)
                 }
-            
-            Text(vendor.companyName)
-                .font(.title2)
-                .fontWeight(.medium)
-            
-            
-            ForEach(0..<vendor.categories.count/numberOfTagsPerRow + 1, id: \.self) { rowIndex in
-                HStack(spacing: 10) {
-                    ForEach(vendor.categories.dropFirst(rowIndex * numberOfTagsPerRow).prefix(numberOfTagsPerRow)) { category in
-                        HStack {
-                            Image(systemName: "globe")
-                            Text(category.name)
-                                .font(.system(size: 18, weight: .medium))
-                                .lineLimit(1)
-                        }
-                    }
-                }
-            }
-            TagView(tags: vendor.tags)
-         
+            CompanyNameView(companyName: vendor.companyName)
+            // Categories:
+            TagView(tags: vendor.categories, symbol: .svg)
+            // Tags:
+            TagView(tags: vendor.tags, symbol: .dot)
         }
         .listRowSeparator(.hidden)
     }
@@ -60,5 +43,28 @@ struct CafesCell: View {
 struct CafesCell_Previews: PreviewProvider {
     static var previews: some View {
         CafesCell(vendor: .constant(MockData.mockVendor))
+    }
+}
+
+struct AreaLabelView: View {
+    let area: String
+    
+    var body: some View {
+        Text(area)
+            .padding(6)
+            .padding(.horizontal, 8)
+            .background(Color(.systemBackground))
+            .cornerRadius(16)
+            .padding(8)
+    }
+}
+
+struct CompanyNameView: View {
+    let companyName: String
+    
+    var body: some View {
+        Text(companyName)
+            .font(.title2)
+            .fontWeight(.medium)
     }
 }

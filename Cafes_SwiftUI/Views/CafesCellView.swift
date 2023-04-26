@@ -10,7 +10,7 @@ import SDWebImageSwiftUI
 
 enum TagSymbol { case dot, svg }
 
-struct CafesCell: View {    
+struct CafesCellView: View {    
     
     @Binding var vendor: Vendor
     @Environment(\.verticalSizeClass) private var verticalSizeClass
@@ -20,7 +20,7 @@ struct CafesCell: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            CafesImage(imageURL: vendor.coverPhoto.mediaURL)
+            CafesImageView(imageURL: vendor.coverPhoto.mediaURL)
                 .overlay(alignment: .bottomLeading) {
                     AreaLabelView(area: vendor.areaServed)
                 }
@@ -43,7 +43,7 @@ struct CafesCell: View {
 
 struct CafesCell_Previews: PreviewProvider {
     static var previews: some View {
-        CafesCell(vendor: .constant(MockData.mockVendor))
+        CafesCellView(vendor: .constant(MockData.mockVendor))
     }
 }
 

@@ -1,5 +1,5 @@
 //
-//  CafesImage.swift
+//  CafesImageView.swift
 //  Cafes_SwiftUI
 //
 //  Created by Anatoliy Ostapenko on 22.04.2023.
@@ -8,7 +8,7 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
-struct CafesImage: View {    
+struct CafesImageView: View {    
     let imageURL: URL?
     
     var body: some View {
@@ -30,6 +30,6 @@ struct CafesImage: View {
 
 struct CafesImage_Previews: PreviewProvider {
     static var previews: some View {
-        CafesImage(imageURL: MockData.mockVendor.coverPhoto.mediaURL)
+        CafesImageView(imageURL: MockData.mockVendor.coverPhoto.mediaURL)
     }
 }

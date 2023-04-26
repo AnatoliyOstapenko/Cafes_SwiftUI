@@ -43,16 +43,12 @@ struct CoverPhoto: Codable {
 }
 
 struct Category: Codable, Identifiable, Hashable, Taggable {
-    static func == (lhs: Category, rhs: Category) -> Bool {
-        lhs.name == rhs.name
-    }
-    
     let id: Int
     let name: String
     let image: CategoryImage
 }
 
-struct CategoryImage: Codable, Hashable {
+struct CategoryImage: Codable, Identifiable, Hashable {
     let id: Int
     let mediaURL: URL
     let mediaType: String
@@ -68,4 +64,5 @@ struct Tag: Codable, Identifiable, Hashable, Taggable {
     let id: Int
     let name: String
     let purpose: String
+    
 }

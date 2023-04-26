@@ -27,8 +27,8 @@ enum MockData {
                                    categories: [Category(id: 40,
                                                          name: "Florists",
                                                          image: CategoryImage(id: 1348,
-                                                                      mediaURL: URL(string: "https://media-staging.chatsumer.app/48/1830f855-6315-4d3c-a5dc-088ea826aef2.svg")!,
-                                                                      mediaType: "image"))],
+                                                                              mediaURL: URL(string: "https://media-staging.chatsumer.app/48/1830f855-6315-4d3c-a5dc-088ea826aef2.svg")!,
+                                                                              mediaType: "image"))],
                                    tags: [Tag(id: 99,
                                               name: "BMX",
                                               purpose: "shop")])

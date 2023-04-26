@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 enum TagSymbol { case dot, svg }
 
@@ -18,7 +19,7 @@ struct CafesCell: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 10) {
             CafesImage(imageURL: vendor.coverPhoto.mediaURL)
                 .overlay(alignment: .bottomLeading) {
                     AreaLabelView(area: vendor.areaServed)

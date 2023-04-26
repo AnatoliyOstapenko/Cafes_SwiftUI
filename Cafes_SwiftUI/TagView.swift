@@ -6,9 +6,17 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 protocol Taggable: Codable, Hashable, Identifiable {
     var name: String { get }
+    var image: CategoryImage { get }
+}
+
+extension Taggable {
+    var image: CategoryImage {
+       fatalError()
+    }
 }
 
 struct TagView <T: Taggable>: View {
@@ -34,11 +42,18 @@ struct TagView <T: Taggable>: View {
                                 .lineLimit(1)
                                 .foregroundColor(.secondary)
                         } else {
+                            
+                            
                             HStack {
-                                Image(systemName: "globe")
+                                WebImage(url: tag.image.mediaURL)
+                                    .resizable()
+                                    .placeholder(Image(systemName: "globe"))
+                                    .scaledToFit()
+                                    .frame(width: 20)
                                 Text(tag.name)
                                     .font(.system(size: 18, weight: .medium))
                                     .lineLimit(1)
+                                    .foregroundColor(Color(.darkGray))
                             }
                         }
                     }
@@ -57,9 +72,9 @@ struct TagView <T: Taggable>: View {
             label.text = "• \(tag.name)"
             label.sizeToFit()
             
-            let labelWidth = label.frame.size.width + 38
+            let labelWidth = label.frame.size.width + 32
             
-            if (width + labelWidth + 38) < screenWidth {
+            if (width + labelWidth + 32) < screenWidth {
                 width += labelWidth
                 temporaryItems.append(tag)
             } else {

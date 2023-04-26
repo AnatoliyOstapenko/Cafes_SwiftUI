@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct CafesImage: View {    
     let imageURL: URL?
@@ -14,7 +15,7 @@ struct CafesImage: View {
         AsyncImage(url: imageURL) { image in
             image
                 .resizable()
-                .aspectRatio(contentMode: .fill)
+                .scaledToFill()
                 .frame(height: 200)
                 .clipped()
                 .cornerRadius(8)
@@ -22,8 +23,7 @@ struct CafesImage: View {
         } placeholder: {
             Image("noImage")
                 .resizable()
-                .imageScale(.small)
-                .cornerRadius(8)
+                .frame(height: 200)
         }
     }
 }

@@ -22,6 +22,8 @@
 		F92D356829F2CBC000728DDE /* CafesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92D356729F2CBC000728DDE /* CafesViewModel.swift */; };
 		F92D356A29F2DCD500728DDE /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92D356929F2DCD500728DDE /* Debouncer.swift */; };
 		F92D356C29F2EE5500728DDE /* CafesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92D356B29F2EE5500728DDE /* CafesCell.swift */; };
+		F9FFF9C329F9845800FC6BFB /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = F9FFF9C229F9845800FC6BFB /* SDWebImageSwiftUI */; };
+		F9FFF9C629F9847500FC6BFB /* SDWebImageSVGCoder in Frameworks */ = {isa = PBXBuildFile; productRef = F9FFF9C529F9847500FC6BFB /* SDWebImageSVGCoder */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9FFF9C329F9845800FC6BFB /* SDWebImageSwiftUI in Frameworks */,
+				F9FFF9C629F9847500FC6BFB /* SDWebImageSVGCoder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,6 +120,10 @@
 			dependencies = (
 			);
 			name = Cafes_SwiftUI;
+			packageProductDependencies = (
+				F9FFF9C229F9845800FC6BFB /* SDWebImageSwiftUI */,
+				F9FFF9C529F9847500FC6BFB /* SDWebImageSVGCoder */,
+			);
 			productName = Cafes_SwiftUI;
 			productReference = F92D354C29F2981A00728DDE /* Cafes_SwiftUI.app */;
 			productType = "com.apple.product-type.application";
@@ -144,6 +152,10 @@
 				Base,
 			);
 			mainGroup = F92D354329F2981A00728DDE;
+			packageReferences = (
+				F9FFF9C129F9845800FC6BFB /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				F9FFF9C429F9847500FC6BFB /* XCRemoteSwiftPackageReference "SDWebImageSVGCoder" */,
+			);
 			productRefGroup = F92D354D29F2981A00728DDE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -383,6 +395,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F9FFF9C129F9845800FC6BFB /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		F9FFF9C429F9847500FC6BFB /* XCRemoteSwiftPackageReference "SDWebImageSVGCoder" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSVGCoder.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F9FFF9C229F9845800FC6BFB /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F9FFF9C129F9845800FC6BFB /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+		F9FFF9C529F9847500FC6BFB /* SDWebImageSVGCoder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F9FFF9C429F9847500FC6BFB /* XCRemoteSwiftPackageReference "SDWebImageSVGCoder" */;
+			productName = SDWebImageSVGCoder;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F92D354429F2981A00728DDE /* Project object */;
 }

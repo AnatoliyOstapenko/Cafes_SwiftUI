@@ -11,12 +11,11 @@ protocol Taggable: Codable, Hashable, Identifiable {
     var name: String { get }
 }
 
-struct TagView<T: Taggable>: View {
-    
+struct TagView <T: Taggable>: View {
     let tags: [T]
+    let symbol: TagSymbol
     private var groupedItems: [[T]] = []
     private let screenWidth = UIScreen.main.bounds.width
-    let symbol: TagSymbol
     
     init(tags: [T], symbol: TagSymbol) {
         self.tags = tags

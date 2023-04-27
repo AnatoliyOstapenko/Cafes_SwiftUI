@@ -11,26 +11,35 @@ struct CafesView: View {
     @ObservedObject private var viewModel = CafesViewModel()
     
     var body: some View {
-        VStack {
-            SearchBarView(text: $viewModel.searchText)
-            List($viewModel.filteredVendors) { $vendor in
-                CafesCellView(vendor: $vendor)
-            }
-            .listStyle(.plain)
-            .task {
-                await viewModel.loadData()
-            }
-            .onChange(of: viewModel.searchText) { _ in
-                viewModel.filterVendors()
-            }
-            if viewModel.filteredVendors.isEmpty {
-                GeometryReader { geometry in
-                    EmptyStateView(offset: geometry.size.height / 2)
+        ZStack {
+            VStack {
+                SearchBarView(text: $viewModel.searchText)
+                List($viewModel.filteredVendors) { $vendor in
+                    CafesCellView(vendor: $vendor)
                 }
-            }
-            if viewModel.isLoading {
-                ProgressView()
-                    .scaleEffect(2)
+                .listStyle(.plain)
+                .task {
+                    await viewModel.loadData()
+                }
+                .alert(isPresented: $viewModel.hasError, error: viewModel.error) {
+                    Button {
+                        
+                    } label: {
+                        Text("OK")
+                    }
+                }
+                .onChange(of: viewModel.searchText) { _ in
+                    viewModel.filterVendors()
+                }
+                if viewModel.filteredVendors.isEmpty {
+                    GeometryReader { geometry in
+                        EmptyStateView(offset: geometry.size.height / 2)
+                    }
+                }
+                if viewModel.isLoading {
+                    ProgressView()
+                        .scaleEffect(2)
+                }
             }
         }
     }

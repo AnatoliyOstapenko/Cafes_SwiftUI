@@ -12,23 +12,24 @@ class CafesViewModel: ObservableObject {
     @Published var vendors: [Vendor] = []
     @Published var filteredVendors: [Vendor] = []
     @Published var isLoading = false
+    @Published var hasError = false
+    @Published var error: VendorError?
 
     func loadData() async {
-        let data = Data(MockData.jsonString.utf8)
+        DispatchQueue.main.async { self.isLoading = true }
+        
         do {
-            let decodedData = try JSONDecoder().decode([String:[Vendor]].self, from: data)
+            let vendors = try await VendorService.shared.fetchVendors()
             DispatchQueue.main.async {
-                self.vendors = decodedData["vendors"] ?? []
-                
-                // items are filtered by the company_name field:
-                self.filteredVendors = self.vendors.sorted {$0.companyName < $1.companyName }
-                self.vendors.sort {$0.companyName < $1.companyName}
                 self.isLoading = false
+                // items are filtered by the company_name field:
+                self.filteredVendors = vendors.sorted {$0.companyName < $1.companyName }
+                self.vendors.sort {$0.companyName < $1.companyName}
             }
         } catch {
-            print("Error decoding JSON: \(error)")
             DispatchQueue.main.async {
                 self.isLoading = false
+                
             }
         }
     }
@@ -41,12 +42,27 @@ class CafesViewModel: ObservableObject {
                 self.filteredVendors = self.vendors
                 return
             }
-            
             self.filteredVendors = self.vendors.filter { $0.companyName.localizedCaseInsensitiveContains(self.searchText)}
         })
     }
     
     private func createDebouncer(interval: TimeInterval) -> Debouncer {
         return Debouncer(delay: interval)
+    }
+}
+
+extension CafesViewModel {
+    enum VendorError: LocalizedError {
+        case custom(error: Error)
+        case failedToDecode
+        
+        var errorDescription: String? {
+            switch self {
+            case .custom(error: let error):
+                return error.localizedDescription
+            case .failedToDecode:
+                return "Failed to decode response"
+            }
+        }
     }
 }

@@ -24,6 +24,7 @@
 		F92D356C29F2EE5500728DDE /* CafesCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92D356B29F2EE5500728DDE /* CafesCellView.swift */; };
 		F9FFF9C329F9845800FC6BFB /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = F9FFF9C229F9845800FC6BFB /* SDWebImageSwiftUI */; };
 		F9FFF9C629F9847500FC6BFB /* SDWebImageSVGCoder in Frameworks */ = {isa = PBXBuildFile; productRef = F9FFF9C529F9847500FC6BFB /* SDWebImageSVGCoder */; };
+		F9FFF9CE29FA870300FC6BFB /* VendorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FFF9CD29FA870300FC6BFB /* VendorService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		F92D356729F2CBC000728DDE /* CafesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafesViewModel.swift; sourceTree = "<group>"; };
 		F92D356929F2DCD500728DDE /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
 		F92D356B29F2EE5500728DDE /* CafesCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafesCellView.swift; sourceTree = "<group>"; };
+		F9FFF9CD29FA870300FC6BFB /* VendorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				F9FFF9C829F9A5A400FC6BFB /* Models */,
 				F9FFF9C929F9A5B700FC6BFB /* Views */,
 				F9FFF9C729F9A4F700FC6BFB /* ViewModels */,
+				F9FFF9CF29FA871000FC6BFB /* Services */,
 				F9FFF9CC29F9A6E800FC6BFB /* Helpers */,
 				F9FFF9CB29F9A5EE00FC6BFB /* Supporting Files */,
 				F9FFF9CA29F9A5CC00FC6BFB /* Assets */,
@@ -115,10 +118,10 @@
 		F9FFF9C929F9A5B700FC6BFB /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F92D356B29F2EE5500728DDE /* CafesCellView.swift */,
 				F92D355129F2981A00728DDE /* CafesView.swift */,
-				F90999FF29F541CA006F2BE2 /* BookmarkView.swift */,
+				F92D356B29F2EE5500728DDE /* CafesCellView.swift */,
 				F90999FD29F453B7006F2BE2 /* CafesImageView.swift */,
+				F90999FF29F541CA006F2BE2 /* BookmarkView.swift */,
 				F92D356329F29DD600728DDE /* SearchBarView.swift */,
 				F90999F929F4469E006F2BE2 /* EmptyStateView.swift */,
 				F9099A1529F8422F006F2BE2 /* TagView.swift */,
@@ -150,6 +153,14 @@
 				F90999FB29F44AFB006F2BE2 /* Color+Ext.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		F9FFF9CF29FA871000FC6BFB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F9FFF9CD29FA870300FC6BFB /* VendorService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,6 +246,7 @@
 				F92D355229F2981A00728DDE /* CafesView.swift in Sources */,
 				F92D356A29F2DCD500728DDE /* Debouncer.swift in Sources */,
 				F92D355029F2981A00728DDE /* Cafes_SwiftUIApp.swift in Sources */,
+				F9FFF9CE29FA870300FC6BFB /* VendorService.swift in Sources */,
 				F9099A0029F541CA006F2BE2 /* BookmarkView.swift in Sources */,
 				F92D356C29F2EE5500728DDE /* CafesCellView.swift in Sources */,
 				F92D355E29F299A500728DDE /* CafesAPIModel.swift in Sources */,

@@ -14,10 +14,10 @@ class CafesViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var hasError = false
     @Published var error: VendorServiceError?
-    
-    
+    @Published var page: Int = 0
+
     func loadData() {
-        self.isLoading = true
+        isLoading = true        
         Task {
             do {
                 let vendorsResponse = try await VendorService.shared.fetchVendors()
@@ -37,6 +37,7 @@ class CafesViewModel: ObservableObject {
             }
         }
     }
+
     // The search starts automatically after a user has typed at least 3 symbols, with a 0.5-second debouncing period:
     func filterVendors() {
         var debouncer = createDebouncer(interval: 0.5)

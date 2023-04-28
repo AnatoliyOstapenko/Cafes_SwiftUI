@@ -19,17 +19,18 @@ struct CafesView: View {
                 }
                 .listStyle(.plain)
                 .task {
-                    await viewModel.loadData()
+                    viewModel.loadData()
                 }
                 .alert(isPresented: $viewModel.hasError, error: viewModel.error) {
-                    Button {
-                        
-                    } label: {
+                    Button {} label: {
                         Text("OK")
                     }
                 }
                 .onChange(of: viewModel.searchText) { _ in
                     viewModel.filterVendors()
+                }
+                .refreshable {
+                    viewModel.handleRefresh()
                 }
                 if viewModel.filteredVendors.isEmpty {
                     GeometryReader { geometry in

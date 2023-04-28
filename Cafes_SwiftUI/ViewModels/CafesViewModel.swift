@@ -14,23 +14,26 @@ class CafesViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var hasError = false
     @Published var error: VendorServiceError?
-
-    func loadData() async {
-        DispatchQueue.main.async { self.isLoading = true }
-        
-        do {
-            let vendorsResponse = try await VendorService.shared.fetchVendors()
-            
-            DispatchQueue.main.async {
-                self.isLoading = false
-                // items are filtered by the company_name field:
-                self.filteredVendors = vendorsResponse.sorted {$0.companyName < $1.companyName }
-                self.vendors = self.filteredVendors
-            }
-        } catch {
-            DispatchQueue.main.async {
-                self.isLoading = false
-                self.error = error as? VendorServiceError
+    
+    
+    func loadData() {
+        self.isLoading = true
+        Task {
+            do {
+                let vendorsResponse = try await VendorService.shared.fetchVendors()
+                
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                    // items are filtered by the company_name field:
+                    self.filteredVendors = vendorsResponse.sorted {$0.companyName < $1.companyName }
+                    self.vendors = self.filteredVendors
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                    self.hasError = true
+                    self.error = error as? VendorServiceError
+                }
             }
         }
     }
@@ -46,7 +49,12 @@ class CafesViewModel: ObservableObject {
             self.filteredVendors = self.vendors.filter { $0.companyName.localizedCaseInsensitiveContains(self.searchText)}
         })
     }
-
+    
+    func handleRefresh() {
+        vendors.removeAll()
+        loadData()
+    }
+    
     private func createDebouncer(interval: TimeInterval) -> Debouncer {
         return Debouncer(delay: interval)
     }

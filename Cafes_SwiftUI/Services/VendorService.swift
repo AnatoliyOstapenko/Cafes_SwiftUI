@@ -21,8 +21,7 @@ enum VendorServiceError: LocalizedError {
     }
 }
 
-struct VendorService {
-    
+struct VendorService {    
     static let shared = VendorService()
     private init() {}
     
@@ -31,10 +30,11 @@ struct VendorService {
         
         do {
             let decodedData = try JSONDecoder().decode([String:[Vendor]].self, from: data)
-            guard let vendor = decodedData["vendors"] else {
+            guard let vendors = decodedData["vendors"] else {
                 throw VendorServiceError.failedToDecode
             }
-            return vendor
+            return vendors
+            
         } catch {
             throw VendorServiceError.custom(error: error)
         }

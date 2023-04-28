@@ -13,23 +13,24 @@ class CafesViewModel: ObservableObject {
     @Published var filteredVendors: [Vendor] = []
     @Published var isLoading = false
     @Published var hasError = false
-    @Published var error: VendorError?
+    @Published var error: VendorServiceError?
 
     func loadData() async {
         DispatchQueue.main.async { self.isLoading = true }
         
         do {
-            let vendors = try await VendorService.shared.fetchVendors()
+            let vendorsResponse = try await VendorService.shared.fetchVendors()
+            
             DispatchQueue.main.async {
                 self.isLoading = false
                 // items are filtered by the company_name field:
-                self.filteredVendors = vendors.sorted {$0.companyName < $1.companyName }
-                self.vendors.sort {$0.companyName < $1.companyName}
+                self.filteredVendors = vendorsResponse.sorted {$0.companyName < $1.companyName }
+                self.vendors = self.filteredVendors
             }
         } catch {
             DispatchQueue.main.async {
                 self.isLoading = false
-                
+                self.error = error as? VendorServiceError
             }
         }
     }
@@ -45,24 +46,8 @@ class CafesViewModel: ObservableObject {
             self.filteredVendors = self.vendors.filter { $0.companyName.localizedCaseInsensitiveContains(self.searchText)}
         })
     }
-    
+
     private func createDebouncer(interval: TimeInterval) -> Debouncer {
         return Debouncer(delay: interval)
-    }
-}
-
-extension CafesViewModel {
-    enum VendorError: LocalizedError {
-        case custom(error: Error)
-        case failedToDecode
-        
-        var errorDescription: String? {
-            switch self {
-            case .custom(error: let error):
-                return error.localizedDescription
-            case .failedToDecode:
-                return "Failed to decode response"
-            }
-        }
     }
 }

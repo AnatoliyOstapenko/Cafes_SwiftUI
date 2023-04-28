@@ -16,7 +16,7 @@ enum VendorServiceError: LocalizedError {
         case .custom(error: let error):
             return error.localizedDescription
         case .failedToDecode:
-            return "Failed to decode response"
+            return "The vendor data is invalid, please try again later"
         }
     }
 }

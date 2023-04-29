@@ -7,6 +7,10 @@
 
 import Foundation
 
+protocol VendorServiceProtocol {
+    func fetchVendors() async throws -> [Vendor]
+}
+
 enum VendorServiceError: LocalizedError {
     case custom(error: Error)
     case failedToDecode
@@ -21,9 +25,7 @@ enum VendorServiceError: LocalizedError {
     }
 }
 
-struct VendorService {    
-    static let shared = VendorService()
-    private init() {}
+struct VendorService: VendorServiceProtocol {
     
     func fetchVendors() async throws -> [Vendor] {
         let data = Data(MockData.jsonString.utf8)

@@ -15,12 +15,18 @@ class CafesViewModel: ObservableObject {
     @Published var hasError = false
     @Published var error: VendorServiceError?
     @Published var page: Int = 0
+    
+    private let service: VendorServiceProtocol
+    
+    init(service: VendorServiceProtocol = VendorService()) {
+        self.service = service
+    }
 
     func loadData() {
         isLoading = true        
         Task {
             do {
-                let vendorsResponse = try await VendorService.shared.fetchVendors()
+                let vendorsResponse = try await service.fetchVendors()
                 
                 DispatchQueue.main.async {
                     self.isLoading = false

@@ -23,9 +23,7 @@ struct CafesView: View {
                     viewModel.loadData()
                 }
                 .alert(isPresented: $viewModel.hasError, error: viewModel.error) {
-                    Button {} label: {
-                        Text("OK")
-                    }
+                    Button("OK", role: .cancel) {}
                 }
                 .onChange(of: viewModel.searchText) { _ in
                     viewModel.filterVendors()

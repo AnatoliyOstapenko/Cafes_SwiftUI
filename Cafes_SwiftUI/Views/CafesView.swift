@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import ListPagination
 
 struct CafesView: View {
     @ObservedObject private var viewModel = CafesViewModel()

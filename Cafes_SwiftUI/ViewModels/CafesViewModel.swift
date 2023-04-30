@@ -27,7 +27,6 @@ class CafesViewModel: ObservableObject {
         Task {
             do {
                 let vendorsResponse = try await service.fetchVendors()
-                
                 DispatchQueue.main.async {
                     self.isLoading = false
                     // items are filtered by the company_name field:
